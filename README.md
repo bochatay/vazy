@@ -1,5 +1,5 @@
 # vazy
-3d vase designer
+Générateur de vases pour l'impression 3d. 3d vase designer for 3d printing.
 
 Site web: vazy.livehost.fr
 
