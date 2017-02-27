@@ -3,7 +3,7 @@
 
 Site web: vazy.livehost.fr
 
-conf.php: fichier de configuration de la base de donnée. La base de données sert uniquement à compter le nombre de ases générés. Le 27.2.2017, 7015 vases ont été générés depuis 2014.
+conf.php: fichier de configuration de la base de donnée. La base de données sert uniquement à compter le nombre de vases générés. Le 27.2.2017, 7015 vases ont été générés depuis 2014.
 
 index.php: Initialisation et chargement du template "main.php"
 
