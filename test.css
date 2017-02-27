@@ -1,0 +1,27 @@
+html						{font-size: 100%;}
+body						{font-size: 1em;}
+
+a							{color:#0000AA; text-decoration:none;}
+a:hover					{color:#0000AA; text-decoration:none;}
+
+.inputnumber			{width:50px; color:#000000; text-decoration:none;}
+.inputtext				{width:100px; color:#000000; text-decoration:none;}
+.divsGauche				{position:relative; width:520px; border:1px solid black; margin:2px;}
+.divsDroite				{position:relative; width:400px; border:1px solid black; margin:2px;}
+.divgauche				{float:left;}
+.divdroite				{float:left;}
+.titre					{font-size:1.5em;}
+.range					{width:200px;  padding: 1px;   border: 1px;   margin: 2px; }
+/*
+input[type='range'] {
+    -webkit-appearance: none !important;
+    background:red;
+    height:7px;
+}
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background:blue;
+    height:10px;
+    width:10px;
+}*/
+
