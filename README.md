@@ -13,5 +13,5 @@ stl.php: générateur de STL. Attention: laisser l'encodage iso8859-1 pour que l
 
 stl.js: Javascript permettant la prévisualisation
 
-Merci de considérer que le fichier stl.php contient le texte de license, en attendant que je trouve la solution pour un commit en ISO8859-1
+
 
