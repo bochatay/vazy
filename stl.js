@@ -212,7 +212,26 @@ function mouse(evt,t)
 	}
 }
 
-
+function rnd()
+{
+	document.getElementById("nom").value = "rndvase_"+(Math.floor(Math.random()*1000000));
+	document.getElementById("hauteur").value = (Math.floor(Math.random()*100))+30;
+	document.getElementById("rayon").value = (Math.floor(Math.random()*100))+2;
+	document.getElementById("plage").value = (Math.floor(Math.random()*720));
+	document.getElementById("offsetvertical").value =(Math.random()*360)+0.0;
+	document.getElementById("offsethorizontal").value = (Math.random()*100)+0.0;
+	document.getElementById("varrad0").value = (Math.random()*4.0)-2.0;
+	document.getElementById("varrad1").value = (Math.random()*4.0)-2.0;
+	document.getElementById("amplitude").value = (Math.random()*50.0)-25.0;
+	document.getElementById("varlin0").value = (Math.random()*2.0)-1.0;
+	document.getElementById("varlin1").value = (Math.random()*2.0)-1.0;
+	document.getElementById("varsinp").value = (Math.random()*720.0);
+	document.getElementById("varsino").value = Math.random()*360.0;
+	document.getElementById("periodes").value = (Math.floor(Math.random()*20))+1;
+	document.getElementById("revolution").value = (Math.random()*720.0)-360.0;
+		
+	maj();
+}
 function creer(t)
 {
 	switch(t)
