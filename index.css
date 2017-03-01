@@ -1,0 +1,33 @@
+/*
+    VAZY Online vase design tool
+    Copyright (C) 2017  Valentin Bochatay
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+*/
+
+
+html						{font-size: 100%;}
+body						{font-size: 1em;}
+
+a							{color:#0000AA; text-decoration:none;}
+a:hover					{color:#0000AA; text-decoration:none;}
+
+.inputnumber			{width:50px; color:#000000; text-decoration:none;}
+.inputtext				{width:100px; color:#000000; text-decoration:none;}
+.divsGauche				{position:relative; width:520px; border:1px solid black; margin:2px;}
+.divsDroite				{position:relative; width:400px; border:1px solid black; margin:2px;}
+.divgauche				{float:left;}
+.divdroite				{float:left;}
+.titre					{font-size:1.5em;}
+.range					{width:200px;  padding: 1px;   border: 1px;   margin: 2px; }
+
+

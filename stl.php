@@ -16,15 +16,14 @@
 */
 
 
-// LAISSER EN ANSI
-require_once("./conf.php");
-header("Content-Type: application/octet-stream;");
+//require_once("./conf.php");
+header("Content-Type: application/octet-stream; charset=iso-8859-1");
 $name = $_POST["nom"];
 if(strlen($name)<1) $name="sans_titre";
 if(strlen($name)>100) $name="sans_titre";
 header("Content-disposition: attachment; filename=$name.stl");
 session_cache_limiter('public, must-revalidate');
-sqlConnect($dbServer, $dbLogin, $dbPassword, $dbCharset); 
+//sqlConnect($dbServer, $dbLogin, $dbPassword, $dbCharset); 
 class vertex
 {
 	var $x;
@@ -146,7 +145,7 @@ $angle_add = 360.0 / $steps_h;
 $nombre_triangles = (2 * $steps_h) * ($steps_v -1);
 if($closetop) $nombre_triangles += $steps_h;
 if($closebottom) $nombre_triangles += $steps_h;
-//$sa = ($varlin1 - $varlin0) / $steps_v;	// variation linéaire amplitude de periode. $sa=différence d'1 étape
+//$sa = ($varlin1 - $varlin0) / $steps_v;	// variation linÃ©aire amplitude de periode. $sa=diffÃ©rence d'1 Ã©tape
 $sa = ($varlin1 - $varlin0);	
 
 
@@ -162,11 +161,11 @@ for($cpt_z = 0 ; $cpt_z<$steps_v ; $cpt_z++)
 	
 	$fh = $cpt_z / $steps_v;			// Pourcentage hauteur
 	$moda = $fh * $revolution;
-	//$c_rayon = $rayon * (1.0 + $offsethorizontal+cos(deg2rad(($fh*$profil_plage)+$offsetvertical)));	// rayon général du profil en fct de la hauteur
+	//$c_rayon = $rayon * (1.0 + $offsethorizontal+cos(deg2rad(($fh*$profil_plage)+$offsetvertical)));	// rayon gÃ©nÃ©ral du profil en fct de la hauteur
 	$varr = $varrad1 - $varrad0;
 	$ray = $rayon * ($fh * $varr + $varrad0);
-	$c_rayon = $offsethorizontal + $ray * (1.0 + cos(deg2rad(($fh*$profil_plage)+$offsetvertical)));	// rayon général du profil en fct de la hauteur	
-	$tab_z[$cpt_z] =  array();		// Tableau des circonférences
+	$c_rayon = $offsethorizontal + $ray * (1.0 + cos(deg2rad(($fh*$profil_plage)+$offsetvertical)));	// rayon gÃ©nÃ©ral du profil en fct de la hauteur	
+	$tab_z[$cpt_z] =  array();		// Tableau des circonfÃ©rences
 	$c_angle=0.0;
 	$amp = $amplitude * ($varlin0 + $sa * $fh) * (cos(deg2rad($fh * $varsinp + $varsino)));
 
@@ -253,10 +252,11 @@ $html = $nombre_triangles;
 //$html .= $data;
 
 
-sqlStatementExecute($dbName,"UPDATE vazy_compteur SET valeur = valeur + 1 WHERE id=1;");
+//sqlStatementExecute($dbName,"UPDATE vazy_compteur SET valeur = valeur + 1 WHERE id=1;");
 // **************************************************
 // ********* AFFICHAGE
 // **************************************************
+//echo utf8_decode($bd);
 echo $bd;
 //echo $html;
 //mysql_close();
