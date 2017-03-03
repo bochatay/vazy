@@ -85,8 +85,6 @@ class triangle
 	}
 }
 
-
-
 function creeHeader($t)	// donner le nombre de triangles
 {
 	$r = 'Created with vazy.livehost.fr by Valentin Bochatay.';
@@ -96,24 +94,6 @@ function creeHeader($t)	// donner le nombre de triangles
 	$r .= pack("V",$t);
 	return $r;
 }
-/*function creeTriangle($x1,$y1,$z1,$x2,$y2,$z2,$x3,$y3,$z3)
-{
-	$r = '';
-	$r .= pack("f",0.0);	// N
-	$r .= pack("f",0.0);	// N
-	$r .= pack("f",0.0);	// N
-	$r .= pack("f",$x1);	// V1
-	$r .= pack("f",$y1);	// V1
-	$r .= pack("f",$z1);	// V1
-	$r .= pack("f",$x2);	// V2
-	$r .= pack("f",$y2);	// V2
-	$r .= pack("f",$z2);	// V2
-	$r .= pack("f",$x3);	// V3
-	$r .= pack("f",$y3);	// V3
-	$r .= pack("f",$z3);	// V3
-	$r .= pack("S",0);	// 16 bits Attribute byte count
-	return $r;
-}*/
 
 function testnumber ($val,$min,$max)
 {	
@@ -123,8 +103,7 @@ function testnumber ($val,$min,$max)
 		if($val > $max) $val = $max;
 	}
 	else
-	$val = $min;
-	
+	$val = $min;	
 	return $val;
 }
 
@@ -256,12 +235,12 @@ if($closetop) // Fermer le sommet
 	
 			
 
-$html = $nombre_triangles;
+//$html = $nombre_triangles;
 
 
 //$html .= $data;
 
-
+// Mise à jour du nombre de vases générés
 //sqlStatementExecute($dbName,"UPDATE vazy_compteur SET valeur = valeur + 1 WHERE id=1;");
 // **************************************************
 // ********* AFFICHAGE
