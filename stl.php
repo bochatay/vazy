@@ -15,15 +15,26 @@
 
 */
 
+/*
+	Informations trouvées sur:
+	https://en.wikipedia.org/wiki/STL_(file_format)
+	
+*/
+/*
+	Le modèle de base pour un vase est une superposition de cercles formant un cylindre.
+	hauteur du modèle: $steps_v points et $height mm;
+	La génération du vase commence du bas vers le haut.
+	Les paramètres modifient chaque cercle donnant un polygone de $steps_h sommets
+	Les points d'un polygones sont reliés aux points du polygone supérieur par des triangles
+*/
 
-//require_once("./conf.php");
 header("Content-Type: application/octet-stream; charset=iso-8859-1");
 $name = $_POST["nom"];
 if(strlen($name)<1) $name="sans_titre";
 if(strlen($name)>100) $name="sans_titre";
 header("Content-disposition: attachment; filename=$name.stl");
 session_cache_limiter('public, must-revalidate');
-//sqlConnect($dbServer, $dbLogin, $dbPassword, $dbCharset); 
+ 
 class vertex
 {
 	var $x;
@@ -54,7 +65,7 @@ class triangle
 		$this->v[$n] = $vert;
 		//$this->v[$n] = new vertex($vert->x,$vert->y,$vert->z);
 	}
-	function getBinary()
+	function getBinary()	// retourne au format STL binaire
 	{
 		$r = '';
 		$r .= pack("f",0.0);	// N
@@ -85,7 +96,7 @@ function creeHeader($t)	// donner le nombre de triangles
 	$r .= pack("V",$t);
 	return $r;
 }
-function creeTriangle($x1,$y1,$z1,$x2,$y2,$z2,$x3,$y3,$z3)
+/*function creeTriangle($x1,$y1,$z1,$x2,$y2,$z2,$x3,$y3,$z3)
 {
 	$r = '';
 	$r .= pack("f",0.0);	// N
@@ -102,7 +113,7 @@ function creeTriangle($x1,$y1,$z1,$x2,$y2,$z2,$x3,$y3,$z3)
 	$r .= pack("f",$z3);	// V3
 	$r .= pack("S",0);	// 16 bits Attribute byte count
 	return $r;
-}
+}*/
 
 function testnumber ($val,$min,$max)
 {	
@@ -116,6 +127,8 @@ function testnumber ($val,$min,$max)
 	
 	return $val;
 }
+
+// VARIABLES DE FONCTIONNEMENT
 
 $height = testnumber(floatval($_POST["hauteur"]),0.1,1000000.0);
 $steps_v = testnumber(intval($_POST["pasvertical"]),2,160);
@@ -137,20 +150,17 @@ $varrad1 = testnumber(floatval($_POST["varrad1"]),-1000000.0,1000000.0);
 $closetop = $_POST[closetop];
 $closebottom = $_POST[closebottom];
 
-// VARIABLES DE FONCTIONNEMENT
-if($steps_h<3) $steps_h = 3;
-if($steps_v<2) $steps_v = 2;
-$h = $height / ($steps_v-1);
-$angle_add = 360.0 / $steps_h;
-$nombre_triangles = (2 * $steps_h) * ($steps_v -1);
-if($closetop) $nombre_triangles += $steps_h;
-if($closebottom) $nombre_triangles += $steps_h;
-//$sa = ($varlin1 - $varlin0) / $steps_v;	// variation linéaire amplitude de periode. $sa=différence d'1 étape
-$sa = ($varlin1 - $varlin0);	
 
-
-
-$bd='';
+if($steps_h<3) $steps_h = 3;	// Nombre de points de la circonférence
+if($steps_v<2) $steps_v = 2;	// Nombre de points verticalement
+$h = $height / ($steps_v-1);	// différence de hauteur entre une "couche" et la suivante
+$angle_add = 360.0 / $steps_h;	// angle entre 2 points d'un cercle (-> polygone)
+$nombre_triangles = (2 * $steps_h) * ($steps_v -1);	// nombre total de triangles
+if($closetop) $nombre_triangles += $steps_h;		// nombre total de triangles augmenté si sommet fermé
+if($closebottom) $nombre_triangles += $steps_h;		// nombre total de triangles augmenté si fond fermé
+//$sa = ($varlin1 - $varlin0) / $steps_v;		// variation linéaire amplitude de periode. $sa=différence d'1 étape
+$sa = ($varlin1 - $varlin0);				// variation linéaire amplitude de periode
+$bd='';		// cette variable contient les données du fichier STL à envoyer au client web
 $bd .=creeHeader($nombre_triangles);
 
 // Creation en memoire
@@ -182,7 +192,7 @@ for($cpt_z = 0 ; $cpt_z<$steps_v ; $cpt_z++)
 
 
 
-// Generation data stl
+// Generation data stl (triangles)
 $t1 = new triangle(0,0,0,0,0,0,0,0,0);
 $t2 = new triangle(0,0,0,0,0,0,0,0,0);
 for($cpt_z = 0 ; $cpt_z<($steps_v-1) ; $cpt_z++)
