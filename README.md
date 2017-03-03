@@ -24,3 +24,6 @@ index.php: Main file
 stl.php: STL generator.
 
 stl.js: Javascript for the visualisation
+
+
+TEST 
